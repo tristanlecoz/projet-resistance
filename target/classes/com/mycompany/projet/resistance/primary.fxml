@@ -28,6 +28,7 @@
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ccd0a5" height="8.0" layoutX="195.0" layoutY="96.0" stroke="BLACK" strokeType="INSIDE" width="20.0" />
             <Text fx:id="textResult" layoutX="155.0" layoutY="202.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Résultat : 0" />
             <Text fx:id="textTol" layoutX="244.0" layoutY="202.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tolérance : 0" />
+            <Text fx:id="textErreur" layoutX="89.0" layoutY="158.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="323.33331298828125" />
          </children>
       </Pane>
    </children>

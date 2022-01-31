@@ -33,6 +33,8 @@ public class PrimaryController {
     private Text textResult;
     @FXML
     private Text textTol;
+    @FXML
+    private Text textErreur;
     
     
     
@@ -66,10 +68,18 @@ public class PrimaryController {
         Rectangle boutonSelectionne =(Rectangle) event.getSource();
         String couleurSelectionne=choicevalue.getValue();
         System.out.print(couleurSelectionne+"\n");
-        for(int i=0;i<color2.size();i++){
-            if(couleurSelectionne.equals(color2.get(i).getName())){
-                System.out.print(color2.get(i).getcolorHex()+"\n");
-                boutonSelectionne.setFill(color2.get(i).getcolorHex());
+        if ((couleurSelectionne.equals("Or") || couleurSelectionne.equals("Argent"))&& (boutonSelectionne.getId().equals("bandeUn") || boutonSelectionne.getId().equals("bandeDeux"))){
+            textErreur.setText("La couleur "+couleurSelectionne+" n'est pas disponible pour cette anneau !!!");
+        
+        }else if((couleurSelectionne.equals("Orange") || couleurSelectionne.equals("Jaune")|| couleurSelectionne.equals("Noir")|| couleurSelectionne.equals("Blanc"))&& boutonSelectionne.getId().equals("bandeTol")){
+            textErreur.setText("La couleur "+couleurSelectionne+" n'est pas disponible pour cette anneau !!!");
+        }else{
+            for(int i=0;i<color2.size();i++){
+                if(couleurSelectionne.equals(color2.get(i).getName())){
+                    System.out.print(color2.get(i).getcolorHex()+"\n");
+                    boutonSelectionne.setFill(color2.get(i).getcolorHex());
+                    textErreur.setText("");
+                }
             }
         }
         calculResistance();
