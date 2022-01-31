@@ -1,5 +1,6 @@
 package com.mycompany.projet.resistance;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
@@ -41,18 +42,18 @@ public class PrimaryController {
      
     public void initialize() {
        
-       colorValue noir=new colorValue("Noir",Color.BLACK,0,1,0.0);
-       colorValue marron=new colorValue("Marron",Color.BROWN,1,10,1);
-       colorValue rouge=new colorValue("Rouge",Color.RED,2,100,2);
-       colorValue orange=new colorValue("Orange",Color.ORANGE,3,1000,0.0);
-       colorValue jaune=new colorValue("Jaune",Color.YELLOW,4,10000,0.0);
-       colorValue vert=new colorValue("Vert",Color.GREEN,5,100000,0.5);
-       colorValue bleu=new colorValue("Bleu",Color.BLUE,6,1000000,0.25);
-       colorValue violet=new colorValue("Violet",Color.PURPLE,7,10000000,0.1);
-       colorValue gris=new colorValue("Gris",Color.GREY,8,100000000,0.05);
-       colorValue blanc=new colorValue("Blanc",Color.WHITE,9,1000000000,0.0);
-       colorValue or=new colorValue("Or",Color.GOLD,0,0.1,5);
-       colorValue argent=new colorValue("Argent",Color.SILVER,0,0.01,10);
+       colorValue noir=new colorValue("Noir",Color.BLACK,0,1,0.0,0);
+       colorValue marron=new colorValue("Marron",Color.BROWN,1,10,1,100);
+       colorValue rouge=new colorValue("Rouge",Color.RED,2,100,2,50);
+       colorValue orange=new colorValue("Orange",Color.ORANGE,3,1000,0.0,15);
+       colorValue jaune=new colorValue("Jaune",Color.YELLOW,4,10000,0.0,25);
+       colorValue vert=new colorValue("Vert",Color.GREEN,5,100000,0.5,0);
+       colorValue bleu=new colorValue("Bleu",Color.BLUE,6,1000000,0.25,10);
+       colorValue violet=new colorValue("Violet",Color.PURPLE,7,10000000,0.1,5);
+       colorValue gris=new colorValue("Gris",Color.GREY,8,100000000,0.05,0);
+       colorValue blanc=new colorValue("Blanc",Color.WHITE,9,1000000000,0.0,0);
+       colorValue or=new colorValue("Or",Color.GOLD,0,0.1,5,0);
+       colorValue argent=new colorValue("Argent",Color.SILVER,0,0.01,10,0);
        
        
        color = FXCollections.observableArrayList(noir.getName(),marron.getName(),rouge.getName(),orange.getName(),jaune.getName(),vert.getName(),bleu.getName(),violet.getName(),gris.getName(),blanc.getName(),or.getName(),argent.getName()); 
@@ -88,11 +89,11 @@ public class PrimaryController {
        
     }
     
-    private void calculResistance(){
+      private void calculResistance(){
         int anneauUn=0;
         int anneauDeux=0;
-        int multiplicateur=0;
-        int tolerance=0;
+        double multiplicateur=0;
+        double tolerance=0;
         double result=0;
         
         for(int i=0;i<color2.size();i++){
@@ -107,16 +108,17 @@ public class PrimaryController {
                 anneauDeux=color2.get(i).getValue();
             }
         }
+       
          for(int i=0;i<color2.size();i++){
             if(bandeMulti.getFill().equals(color2.get(i).getcolorHex())){
                 System.out.print("bande 1 :"+color2.get(i).getName()+"\n");
-                multiplicateur=color2.get(i).getValue();
+                multiplicateur=color2.get(i).getMultiplicateur();
             }
         }
           for(int i=0;i<color2.size();i++){
             if(bandeTol.getFill().equals(color2.get(i).getcolorHex())){
                 System.out.print("bande 1 :"+color2.get(i).getName()+"\n");
-                tolerance=color2.get(i).getValue();
+                tolerance=color2.get(i).getTolerance();
             }
         }
         System.out.print("bande 1:"+anneauUn+"\n");
@@ -130,7 +132,16 @@ public class PrimaryController {
         
         
     }
+    @FXML
+    private void switchToSecondary() throws IOException {
+        App.setRoot("secondary");
+    }
+     @FXML
+    private void switchToThird() throws IOException {
+        App.setRoot("Third");
+    }
+}
 
 
     
-}
+

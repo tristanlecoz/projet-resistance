@@ -16,13 +16,15 @@ class colorValue {
     private int value;
     private double multiplicateur;
     private double tolerance;
+    private int ppm;
     
-    public colorValue(String Name,Paint colorHex,int value,double multiplicateur,double tolerance){
+    public colorValue(String Name,Paint colorHex,int value,double multiplicateur,double tolerance,int ppm){
         this.Name=Name;
         this.colorHex=colorHex;
         this.value=value;
         this.multiplicateur=multiplicateur;
         this.tolerance=tolerance;
+        this.ppm=ppm;
     }
     
     public String getName(){
@@ -43,6 +45,9 @@ class colorValue {
     
     public double getTolerance(){
         return this.tolerance;
+    }
+    public int  getPPM(){
+        return this.ppm;
     }
     
 }
