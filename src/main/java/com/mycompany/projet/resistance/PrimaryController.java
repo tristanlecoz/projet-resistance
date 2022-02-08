@@ -1,17 +1,13 @@
 package com.mycompany.projet.resistance;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import static javafx.print.PrintColor.COLOR;
+import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
@@ -36,6 +32,7 @@ public class PrimaryController {
     private Text textTol;
     @FXML
     private Text textErreur;
+    
     
     
     
@@ -102,6 +99,7 @@ public class PrimaryController {
                 anneauUn=color2.get(i).getValue();
             }
         }
+        
         for(int i=0;i<color2.size();i++){
             if(bandeDeux.getFill().equals(color2.get(i).getcolorHex())){
                 System.out.print("bande 1 :"+color2.get(i).getName()+"\n");
@@ -140,6 +138,35 @@ public class PrimaryController {
     private void switchToThird() throws IOException {
         App.setRoot("Third");
     }
+     @FXML
+    private void switchTovalueToColor() throws IOException {
+        App.setRoot("valueToColor");
+    }
+/*
+    private void findColor(MouseEvent event) {
+        double valeurOhm= Double.valueOf(valueOhm.getText());
+        System.out.print(valeurOhm+"\n");
+        int[] bandValues={0,1,2,3,4,5,6,7,8,9};
+        int[] multiplicateurValues={1,10,100,1000,10000,100000,1000000,10000000,100000000,1000000000};
+        double valeur=0;
+        for(int i=0;i<bandValues.length;i++){
+            for(int j=0;j<bandValues.length;j++){
+                for(int k=0;k<multiplicateurValues.length;k++){
+                    valeur=(bandValues[i]*10+bandValues[j])*multiplicateurValues[k];
+                    if( valeur==valeurOhm ){
+                        System.out.print(" bande 1 : "+bandValues[i]+" bande 2 : "+bandValues[j]+" multiplicateur : "+multiplicateurValues[k]+"\n");
+                    }
+                    
+                    
+            
+                }
+            }
+        }
+        
+       
+        
+        
+    }*/
 }
 
 
