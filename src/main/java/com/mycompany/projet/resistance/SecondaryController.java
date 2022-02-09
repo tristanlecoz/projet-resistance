@@ -1,7 +1,11 @@
 package com.mycompany.projet.resistance;
 
+import java.awt.Desktop;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
@@ -147,6 +151,18 @@ public class SecondaryController {
     @FXML
      private void switchToThird() throws IOException {
         App.setRoot("third");
+    }
+    
+     @FXML
+     private void switchTovalueToColor() throws IOException {
+        App.setRoot("valueToColor");
+    }
+     
+    @FXML
+      public void helpmenu() throws IOException{
+        Path currentRelativePath = Paths.get("");
+        String s = currentRelativePath.toAbsolutePath().toString();
+        Desktop.getDesktop().open(new File(s+"\\src\\main\\java\\com\\mycompany\\projet\\resistance\\manuel.pdf"));
     }
 
    

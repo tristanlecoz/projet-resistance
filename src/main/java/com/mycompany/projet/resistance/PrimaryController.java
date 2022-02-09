@@ -1,6 +1,10 @@
 package com.mycompany.projet.resistance;
 
+import java.awt.Desktop;
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -141,6 +145,13 @@ public class PrimaryController {
      @FXML
     private void switchTovalueToColor() throws IOException {
         App.setRoot("valueToColor");
+    }
+    
+    @FXML
+    public void helpmenu() throws IOException{
+        Path currentRelativePath = Paths.get("");
+        String s = currentRelativePath.toAbsolutePath().toString();
+        Desktop.getDesktop().open(new File(s+"\\src\\main\\java\\com\\mycompany\\projet\\resistance\\manuel.pdf"));
     }
 /*
     private void findColor(MouseEvent event) {

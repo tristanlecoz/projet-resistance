@@ -1,25 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.projet.resistance.ValueToColorController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.projet.resistance.ValueToColorController">
    <children>
-      <Pane layoutX="27.0" layoutY="22.0" prefHeight="344.0" prefWidth="565.0">
+      <Pane layoutX="21.0" layoutY="42.0" prefHeight="371.0" prefWidth="565.0">
          <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ccd0a5" height="31.0" layoutX="182.0" layoutY="242.0" stroke="BLACK" strokeType="INSIDE" width="150.0" />
-            <Rectangle fx:id="bandeUn" arcHeight="5.0" arcWidth="5.0" fill="#0a1b2b" height="31.0" layoutX="198.0" layoutY="242.0" onMouseClicked="#resistanceClick" stroke="BLACK" strokeType="INSIDE" width="9.0" />
-            <Rectangle fx:id="bandeTrois" arcHeight="5.0" arcWidth="5.0" fill="#0a1b2b" height="31.0" layoutX="232.0" layoutY="242.0" onMouseClicked="#resistanceClick" stroke="BLACK" strokeType="INSIDE" width="9.0" />
-            <Rectangle fx:id="bandeMulti" arcHeight="5.0" arcWidth="5.0" fill="#0a1b2b" height="31.0" layoutX="262.0" layoutY="242.0" onMouseClicked="#resistanceClick" stroke="BLACK" strokeType="INSIDE" width="9.0" />
-            <Rectangle fx:id="bandeTol" arcHeight="5.0" arcWidth="5.0" fill="#0a1b2b" height="31.0" layoutX="301.0" layoutY="242.0" onMouseClicked="#resistanceClick" stroke="BLACK" strokeType="INSIDE" width="9.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ccd0a5" height="8.0" layoutX="162.0" layoutY="254.0" stroke="BLACK" strokeType="INSIDE" width="20.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ccd0a5" height="8.0" layoutX="332.0" layoutY="254.0" stroke="BLACK" strokeType="INSIDE" width="20.0" />
-            <Rectangle fx:id="bandeDeux" arcHeight="5.0" arcWidth="5.0" fill="#0a1b2b" height="31.0" layoutX="213.0" layoutY="242.0" onMouseClicked="#resistanceClick" stroke="BLACK" strokeType="INSIDE" width="9.0" />
-            <ComboBox fx:id="valeurBox" layoutX="182.0" layoutY="113.0" prefWidth="150.0" promptText="Choisir la valeur " />
-            <Button layoutX="231.0" layoutY="160.0" mnemonicParsing="false" onMouseClicked="#calculer" text="Calculer" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ccd0a5" height="31.0" layoutX="319.0" layoutY="107.0" stroke="BLACK" strokeType="INSIDE" width="150.0" />
+            <Rectangle fx:id="bandeUn" arcHeight="5.0" arcWidth="5.0" fill="#0a1b2b" height="31.0" layoutX="332.0" layoutY="107.0" onMouseClicked="#resistanceClick" stroke="BLACK" strokeType="INSIDE" width="9.0" />
+            <Rectangle fx:id="bandeTrois" arcHeight="5.0" arcWidth="5.0" fill="#0a1b2b" height="31.0" layoutX="381.0" layoutY="107.0" onMouseClicked="#resistanceClick" stroke="BLACK" strokeType="INSIDE" width="9.0" />
+            <Rectangle fx:id="bandeMulti" arcHeight="5.0" arcWidth="5.0" fill="#0a1b2b" height="31.0" layoutX="425.0" layoutY="107.0" onMouseClicked="#resistanceClick" stroke="BLACK" strokeType="INSIDE" width="9.0" />
+            <Rectangle fx:id="bandeTol" arcHeight="5.0" arcWidth="5.0" fill="#0a1b2b" height="31.0" layoutX="447.0" layoutY="107.0" onMouseClicked="#resistanceClick" stroke="BLACK" strokeType="INSIDE" width="9.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ccd0a5" height="8.0" layoutX="299.0" layoutY="119.0" stroke="BLACK" strokeType="INSIDE" width="20.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ccd0a5" height="8.0" layoutX="469.0" layoutY="118.0" stroke="BLACK" strokeType="INSIDE" width="20.0" />
+            <Rectangle fx:id="bandeDeux" arcHeight="5.0" arcWidth="5.0" fill="#0a1b2b" height="31.0" layoutX="350.0" layoutY="107.0" onMouseClicked="#resistanceClick" stroke="BLACK" strokeType="INSIDE" width="9.0" />
+            <ComboBox fx:id="valeurBox" layoutX="32.0" layoutY="110.0" prefWidth="150.0" promptText="Choisir la valeur " />
+            <Button layoutX="31.0" layoutY="166.0" mnemonicParsing="false" onMouseClicked="#calculer" text="Trouver les couleurs">
+               <font>
+                  <Font size="15.0" />
+               </font></Button>
+            <Text fontSmoothingType="LCD" layoutX="184.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Résistance Calculator " textAlignment="CENTER" underline="true">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Text>
+            <Button layoutX="235.0" layoutY="286.0" mnemonicParsing="false" onMouseClicked="#switchToSecondary" text="5 anneaux">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button contentDisplay="CENTER" layoutX="393.0" layoutY="286.0" lineSpacing="2.0" mnemonicParsing="false" onMouseClicked="#switchToThird" text="6 anneaux">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button layoutX="65.0" layoutY="286.0" mnemonicParsing="false" onMouseClicked="#switchToPrimary" text="4 anneaux">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <MenuBar prefHeight="36.0" prefWidth="565.0">
+               <menus>
+                  <Menu mnemonicParsing="false" text="Help">
+                     <items>
+                        <MenuItem mnemonicParsing="false" onAction="#helpmenu" text="PDF Tuto" />
+                     </items>
+                  </Menu>
+               </menus>
+               <padding>
+                  <Insets top="11.0" />
+               </padding>
+            </MenuBar>
          </children>
       </Pane>
    </children>

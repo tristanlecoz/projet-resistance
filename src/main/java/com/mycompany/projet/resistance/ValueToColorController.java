@@ -4,7 +4,12 @@
  */
 package com.mycompany.projet.resistance;
 
+import java.awt.Desktop;
+import java.io.File;
+import java.io.IOException;
 import java.lang.reflect.Array;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Collections;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -157,16 +162,29 @@ public class ValueToColorController {
             if(color2.get(i).getMultiplicateur()==multiplicateur){
                 bandeMulti.setFill(color2.get(i).getcolorHex());
             }
-        }
-       
-
-        
-        
-        
-        
-        
+        }  
         
     }
-
+    
+     @FXML
+    private void switchToSecondary() throws IOException {
+        App.setRoot("secondary");
+    }
+    @FXML
+    private void switchToPrimary() throws IOException {
+        App.setRoot("primary");
+    }
+    
+    @FXML
+     private void switchToThird() throws IOException {
+        App.setRoot("third");
+    }
+     
+    @FXML
+      public void helpmenu() throws IOException{
+        Path currentRelativePath = Paths.get("");
+        String s = currentRelativePath.toAbsolutePath().toString();
+        Desktop.getDesktop().open(new File(s+"\\src\\main\\java\\com\\mycompany\\projet\\resistance\\manuel.pdf"));
+    }
     
 }
