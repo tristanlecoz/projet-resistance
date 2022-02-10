@@ -10,7 +10,6 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -36,9 +35,25 @@ public class PrimaryController {
     private Text textTol;
     @FXML
     private Text textErreur;
+    @FXML
+    private Rectangle bandeTrois;
+    @FXML
+    private Rectangle bandePPM;
+    @FXML
+    private Button switchUn;
+    @FXML
+    private Button switchDeux;
+    @FXML
+    private Button switchTrois;
+    @FXML
+    private Text textResultPPM;
     
     
-    
+    /**************************
+     Initialisation du tableau color2 avec les différents objets
+     Initialisation de la choice Box avec les noms des couleurs
+     
+     **************************/
     
      
     public void initialize() {
@@ -62,18 +77,36 @@ public class PrimaryController {
 
        choicevalue.setItems(color);
        choicevalue.setValue(noir.getName());
-       
+       textResultPPM.setVisible(false);
+       bandeUn.setVisible(false);
+       bandePPM.setVisible(false);
+       bandeTol.setFill(marron.getcolorHex());
+       calculResistance();
     }   
+    
+    
+    
+    /**************************
+      
+     Récupération de la bande selectionné 
+     Récupération du nom de la couleur sélectionné
+     Vérification de la compatibilité des valeurs
+     Changement de couleur de la bande
+     Appel de la fonction permettant de calculer la valeur de la résistance
+     
+     **************************/
 
     @FXML
     private void resistanceClick(MouseEvent event) {
         Rectangle boutonSelectionne =(Rectangle) event.getSource();
         String couleurSelectionne=choicevalue.getValue();
         System.out.print(couleurSelectionne+"\n");
-        if ((couleurSelectionne.equals("Or") || couleurSelectionne.equals("Argent"))&& (boutonSelectionne.getId().equals("bandeUn") || boutonSelectionne.getId().equals("bandeDeux"))){
+        if ((couleurSelectionne.equals("Or") || couleurSelectionne.equals("Argent"))&& (boutonSelectionne.getId().equals("bandeUn") || boutonSelectionne.getId().equals("bandeDeux") || boutonSelectionne.getId().equals("bandeTrois"))){
             textErreur.setText("La couleur "+couleurSelectionne+" n'est pas disponible pour cette anneau !!!");
         
         }else if((couleurSelectionne.equals("Orange") || couleurSelectionne.equals("Jaune")|| couleurSelectionne.equals("Noir")|| couleurSelectionne.equals("Blanc"))&& boutonSelectionne.getId().equals("bandeTol")){
+            textErreur.setText("La couleur "+couleurSelectionne+" n'est pas disponible pour cette anneau !!!");
+        }else if((couleurSelectionne.equals("Vert") || couleurSelectionne.equals("Or")|| couleurSelectionne.equals("Noir")|| couleurSelectionne.equals("Blanc")|| couleurSelectionne.equals("Argent")|| couleurSelectionne.equals("Gris"))&& boutonSelectionne.getId().equals("bandePPM")){
             textErreur.setText("La couleur "+couleurSelectionne+" n'est pas disponible pour cette anneau !!!");
         }else{
             for(int i=0;i<color2.size();i++){
@@ -86,6 +119,16 @@ public class PrimaryController {
         }
         calculResistance();
         
+     /**************************
+      
+     Récupération de la valeurs des bandes en fonctions de leurs couleurs
+     Calcule de la valeur de la résistance
+     Affichage des résulats
+     
+    
+     
+     **************************/
+        
         
        
     }
@@ -93,59 +136,70 @@ public class PrimaryController {
       private void calculResistance(){
         int anneauUn=0;
         int anneauDeux=0;
+        int anneauTrois=0;
+        int ppm=0;
         double multiplicateur=0;
         double tolerance=0;
-        double result=0;
+        double result;
         
         for(int i=0;i<color2.size();i++){
             if(bandeUn.getFill().equals(color2.get(i).getcolorHex())){
                 System.out.print("bande 1 :"+color2.get(i).getName()+"\n");
                 anneauUn=color2.get(i).getValue();
             }
-        }
         
-        for(int i=0;i<color2.size();i++){
             if(bandeDeux.getFill().equals(color2.get(i).getcolorHex())){
                 System.out.print("bande 1 :"+color2.get(i).getName()+"\n");
                 anneauDeux=color2.get(i).getValue();
             }
-        }
+            if(bandeTrois.getFill().equals(color2.get(i).getcolorHex())){
+                System.out.print("bande 1 :"+color2.get(i).getName()+"\n");
+                anneauTrois=color2.get(i).getValue();
+            }
        
-         for(int i=0;i<color2.size();i++){
             if(bandeMulti.getFill().equals(color2.get(i).getcolorHex())){
                 System.out.print("bande 1 :"+color2.get(i).getName()+"\n");
                 multiplicateur=color2.get(i).getMultiplicateur();
             }
-        }
-          for(int i=0;i<color2.size();i++){
+        
             if(bandeTol.getFill().equals(color2.get(i).getcolorHex())){
                 System.out.print("bande 1 :"+color2.get(i).getName()+"\n");
                 tolerance=color2.get(i).getTolerance();
+            }
+            if(bandePPM.getFill().equals(color2.get(i).getcolorHex())){
+                System.out.print("bande 1 :"+color2.get(i).getName()+"\n");
+                ppm=color2.get(i).getPPM();
             }
         }
         System.out.print("bande 1:"+anneauUn+"\n");
         System.out.print("bande 2:"+anneauDeux+"\n");
         System.out.print("multiplicateur:"+multiplicateur+"\n");
         System.out.print("tolerance:"+tolerance+"%"+"\n");
-        result=((10*anneauUn)+anneauDeux)*multiplicateur;
+        result=((100*anneauUn)+(10*anneauDeux)+anneauTrois)*multiplicateur;
         System.out.print("resultat:"+result+"\n");
-        textResult.setText("Résultat :"+String.valueOf(result));
-        textTol.setText("Tolérance :"+String.valueOf(tolerance));
+        textResult.setText("Valeur de la résistance : "+String.valueOf(result)+" Ohm") ;
+        textTol.setText("Tolérance : "+String.valueOf(tolerance)+" %");
+        textResultPPM.setText("PPM : "+String.valueOf(ppm));
         
         
     }
+      
+      /**************************
+      
+     Redirection vers le calcul des couleurs en fonction de la valeur
+     
+     **************************/
+  
     @FXML
-    private void switchToSecondary() throws IOException {
-        App.setRoot("secondary");
-    }
-     @FXML
-    private void switchToThird() throws IOException {
-        App.setRoot("Third");
-    }
-     @FXML
     private void switchTovalueToColor() throws IOException {
         App.setRoot("valueToColor");
     }
+    
+    /**************************
+      
+     Redirection vers le mode d'emploi
+     
+     **************************/
     
     @FXML
     public void helpmenu() throws IOException{
@@ -153,31 +207,37 @@ public class PrimaryController {
         String s = currentRelativePath.toAbsolutePath().toString();
         Desktop.getDesktop().open(new File(s+"\\src\\main\\java\\com\\mycompany\\projet\\resistance\\manuel.pdf"));
     }
-/*
-    private void findColor(MouseEvent event) {
-        double valeurOhm= Double.valueOf(valueOhm.getText());
-        System.out.print(valeurOhm+"\n");
-        int[] bandValues={0,1,2,3,4,5,6,7,8,9};
-        int[] multiplicateurValues={1,10,100,1000,10000,100000,1000000,10000000,100000000,1000000000};
-        double valeur=0;
-        for(int i=0;i<bandValues.length;i++){
-            for(int j=0;j<bandValues.length;j++){
-                for(int k=0;k<multiplicateurValues.length;k++){
-                    valeur=(bandValues[i]*10+bandValues[j])*multiplicateurValues[k];
-                    if( valeur==valeurOhm ){
-                        System.out.print(" bande 1 : "+bandValues[i]+" bande 2 : "+bandValues[j]+" multiplicateur : "+multiplicateurValues[k]+"\n");
-                    }
-                    
-                    
-            
-                }
-            }
-        }
-        
-       
-        
-        
-    }*/
+
+
+    /**************************
+      
+     gestion du nombre de bandes et de leurs valeurs
+     
+     **************************/
+    @FXML
+    private void switchTo5(MouseEvent event) {
+       textResultPPM.setVisible(false);
+       bandeUn.setVisible(true);
+       bandePPM.setVisible(false);
+       calculResistance();
+    }
+
+    @FXML
+    private void switchTo6(MouseEvent event) {
+       textResultPPM.setVisible(true);
+       bandeUn.setVisible(true);
+       bandePPM.setVisible(true);
+       calculResistance();
+    }
+
+    @FXML
+    private void switchTo4(MouseEvent event) {
+       textResultPPM.setVisible(false);
+       bandeUn.setVisible(false);
+       bandeUn.setFill(Color.BLACK);
+       bandePPM.setVisible(false);
+       calculResistance();
+    }
 }
 
 

@@ -12,19 +12,19 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.projet.resistance.ValueToColorController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.projet.resistance.ValueToColorController">
    <children>
       <Pane layoutX="21.0" layoutY="42.0" prefHeight="371.0" prefWidth="565.0">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ccd0a5" height="31.0" layoutX="319.0" layoutY="107.0" stroke="BLACK" strokeType="INSIDE" width="150.0" />
-            <Rectangle fx:id="bandeUn" arcHeight="5.0" arcWidth="5.0" fill="#0a1b2b" height="31.0" layoutX="332.0" layoutY="107.0" onMouseClicked="#resistanceClick" stroke="BLACK" strokeType="INSIDE" width="9.0" />
-            <Rectangle fx:id="bandeTrois" arcHeight="5.0" arcWidth="5.0" fill="#0a1b2b" height="31.0" layoutX="381.0" layoutY="107.0" onMouseClicked="#resistanceClick" stroke="BLACK" strokeType="INSIDE" width="9.0" />
-            <Rectangle fx:id="bandeMulti" arcHeight="5.0" arcWidth="5.0" fill="#0a1b2b" height="31.0" layoutX="425.0" layoutY="107.0" onMouseClicked="#resistanceClick" stroke="BLACK" strokeType="INSIDE" width="9.0" />
-            <Rectangle fx:id="bandeTol" arcHeight="5.0" arcWidth="5.0" fill="#0a1b2b" height="31.0" layoutX="447.0" layoutY="107.0" onMouseClicked="#resistanceClick" stroke="BLACK" strokeType="INSIDE" width="9.0" />
+            <Rectangle fx:id="bandeUn" arcHeight="5.0" arcWidth="5.0" fill="#0a1b2b" height="31.0" layoutX="332.0" layoutY="107.0" stroke="BLACK" strokeType="INSIDE" width="9.0" />
+            <Rectangle fx:id="bandeTrois" arcHeight="5.0" arcWidth="5.0" fill="#0a1b2b" height="31.0" layoutX="381.0" layoutY="107.0" stroke="BLACK" strokeType="INSIDE" width="9.0" />
+            <Rectangle fx:id="bandeMulti" arcHeight="5.0" arcWidth="5.0" fill="#0a1b2b" height="31.0" layoutX="425.0" layoutY="107.0" stroke="BLACK" strokeType="INSIDE" width="9.0" />
+            <Rectangle fx:id="bandeTol" arcHeight="5.0" arcWidth="5.0" fill="#0a1b2b" height="31.0" layoutX="447.0" layoutY="107.0" stroke="BLACK" strokeType="INSIDE" width="9.0" />
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ccd0a5" height="8.0" layoutX="299.0" layoutY="119.0" stroke="BLACK" strokeType="INSIDE" width="20.0" />
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ccd0a5" height="8.0" layoutX="469.0" layoutY="118.0" stroke="BLACK" strokeType="INSIDE" width="20.0" />
-            <Rectangle fx:id="bandeDeux" arcHeight="5.0" arcWidth="5.0" fill="#0a1b2b" height="31.0" layoutX="350.0" layoutY="107.0" onMouseClicked="#resistanceClick" stroke="BLACK" strokeType="INSIDE" width="9.0" />
-            <ComboBox fx:id="valeurBox" layoutX="32.0" layoutY="110.0" prefWidth="150.0" promptText="Choisir la valeur " />
+            <Rectangle fx:id="bandeDeux" arcHeight="5.0" arcWidth="5.0" fill="#0a1b2b" height="31.0" layoutX="350.0" layoutY="107.0" stroke="BLACK" strokeType="INSIDE" width="9.0" />
+            <ComboBox fx:id="valeurBox" layoutX="32.0" layoutY="110.0" prefHeight="25.0" prefWidth="163.0" promptText="Choisir la valeur (Ohm)" />
             <Button layoutX="31.0" layoutY="166.0" mnemonicParsing="false" onMouseClicked="#calculer" text="Trouver les couleurs">
                <font>
                   <Font size="15.0" />
@@ -34,17 +34,7 @@
                   <Font size="24.0" />
                </font>
             </Text>
-            <Button layoutX="235.0" layoutY="286.0" mnemonicParsing="false" onMouseClicked="#switchToSecondary" text="5 anneaux">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Button>
-            <Button contentDisplay="CENTER" layoutX="393.0" layoutY="286.0" lineSpacing="2.0" mnemonicParsing="false" onMouseClicked="#switchToThird" text="6 anneaux">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Button>
-            <Button layoutX="65.0" layoutY="286.0" mnemonicParsing="false" onMouseClicked="#switchToPrimary" text="4 anneaux">
+            <Button layoutX="176.0" layoutY="283.0" mnemonicParsing="false" onMouseClicked="#switchToPrimary" text="Valeur à partir de la couleur">
                <font>
                   <Font size="14.0" />
                </font>

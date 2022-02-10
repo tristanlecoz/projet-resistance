@@ -42,13 +42,18 @@ public class ValueToColorController {
     
     private ObservableList<colorValue> color2;
     private ObservableList<Double> valeurs;
+    double[] multiplicateurValues={1,10,100,1000,10000,100000,1000000,10000000,100000000,1000000000};
     @FXML
     private ComboBox<Double> valeurBox;
 
     /**
      * Initializes the controller class.
      */
-    
+    /**************************
+     Initialisation du tableau color2 avec les différents objets
+     Initialisation de la comboBox avec les valeurs des résistances
+     
+     **************************/
     public void initialize() {
        colorValue noir=new colorValue("Noir",Color.BLACK,0,1,0.0,0);
        colorValue marron=new colorValue("Marron",Color.BROWN,1,10,1,100);
@@ -65,7 +70,6 @@ public class ValueToColorController {
         color2 = FXCollections.observableArrayList(noir,marron,rouge,orange,jaune,vert,bleu,violet,gris,blanc,or,argent); 
        valeurs=FXCollections.observableArrayList();
        double[] bandValues={0,1,2,3,4,5,6,7,8,9};
-       double[] multiplicateurValues={0.01,0.1,1,10,100,1000,10000,100000,1000000,10000000,100000000,1000000000};
        double valeur=0;
         for(int i=0;i<bandValues.length;i++){
             for(int j=0;j<bandValues.length;j++){
@@ -80,74 +84,65 @@ public class ValueToColorController {
         }
         
         Collections.sort(valeurs);
-       
+        bandeTol.setFill(marron.getcolorHex());
         valeurBox.setItems(valeurs);
        
     }    
 
-    @FXML
-    private void resistanceClick(MouseEvent event) {
-    }
+   /**************************
+    
+     Récupération de la valeur
+     Détermination des différentes couleurs
+     Applications des couleurs
+     
+     
+     **************************/
 
     @FXML
     private void calculer(MouseEvent event) {
         double valeurchoisie=valeurBox.getValue();
-        System.out.print(valeurchoisie+"\n");
-        
-        
-        double[] multiplicateurValues={0.01,0.1,1,10,100,1000,10000,100000,1000000,10000000,100000000,1000000000};
-        /*
-        double [] tabvaleur= new double [12];
-        for(int i=0;i<tabvaleur.length;i++){
-            tabvaleur[i]= valeurchoisie%multiplicateurValues[i];
-            System.out.print(tabvaleur[i]+"\n");
-            
-        }*/
         double bandeun=0,bandedeux=0,bandetrois=0;
         double multiplicateur=0;
-        boolean puissance10=false;
-        int[] piArray = String.valueOf(valeurchoisie)
+        
+        int[] valeurChoisieArray = String.valueOf(valeurchoisie)
                       .chars()
                       .map(Character::getNumericValue)
                       .toArray();
-        if (piArray[3]==14){
+        
+        if (valeurChoisieArray[3]==14){
             bandeUn.setVisible(false);
-            puissance10=true;
-            bandedeux=piArray[0];
-            bandetrois=piArray[2];
+            bandedeux=valeurChoisieArray[0];
+            bandetrois=valeurChoisieArray[2];
             
-        }else if(piArray[4]==14){
+        }else if(valeurChoisieArray[4]==14){
             bandeUn.setVisible(true);
-            puissance10=true;
-            bandeun=piArray[0];
-            bandedeux=piArray[2];
-            bandetrois=piArray[3];
+            bandeun=valeurChoisieArray[0];
+            bandedeux=valeurChoisieArray[2];
+            bandetrois=valeurChoisieArray[3];
         }else{
-            if (piArray[2]==0){
+            if (valeurChoisieArray[2]==0){
                 bandeUn.setVisible(false);
-                bandedeux=piArray[0];
-                bandetrois=piArray[1];
+                bandedeux=valeurChoisieArray[0];
+                bandetrois=valeurChoisieArray[1];
             }else{
                 bandeUn.setVisible(true);
-                bandeun=piArray[0];
-                bandedeux=piArray[1];
-                bandetrois=piArray[2];
-                
+                bandeun=valeurChoisieArray[0];
+                bandedeux=valeurChoisieArray[1];
+                bandetrois=valeurChoisieArray[2];
             }
         }
         
+        
         int compteur=1;
         double test=((100*bandeun)+(10*bandedeux)+bandetrois)*multiplicateurValues[0];
+        
         while(valeurchoisie!=test){
             test=((100*bandeun)+(10*bandedeux)+bandetrois)*multiplicateurValues[compteur];
             compteur++;
         }
+        
         compteur--;
-        if(puissance10){
-            multiplicateur=multiplicateurValues[compteur];
-        }else{
-           multiplicateur=multiplicateurValues[compteur];
-        }
+        multiplicateur=multiplicateurValues[compteur];
         
         for(int i=0;i<color2.size();i++){
             if(color2.get(i).getValue()==bandeun){
@@ -166,20 +161,22 @@ public class ValueToColorController {
         
     }
     
-     @FXML
-    private void switchToSecondary() throws IOException {
-        App.setRoot("secondary");
-    }
+    /**************************
+      
+     Redirection vers le calcul de la valeur en fonction des couleurs
+     
+     **************************/
     @FXML
     private void switchToPrimary() throws IOException {
         App.setRoot("primary");
     }
     
-    @FXML
-     private void switchToThird() throws IOException {
-        App.setRoot("third");
-    }
+   
+     /**************************
+      
+     Redirection vers le mode d'emploi
      
+     **************************/
     @FXML
       public void helpmenu() throws IOException{
         Path currentRelativePath = Paths.get("");
